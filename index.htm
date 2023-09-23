@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Fallandi punktar</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+uniform float time;
+attribute vec4 vPosition;
+varying vec4 v_color;
+
+void main()
+{
+	gl_PointSize = 3.0;
+    vec4 tpos = vPosition;
+    v_color = vec4(0.00784314, 0.32156863, 0.61176471, 1.0);
+    tpos.y = 1.0 - mod(0.0015*time + tpos.y+1.0, 2.0);
+
+    if (tpos.y > -0.22222 && tpos.y < 0.22222) {
+        v_color = vec4(1.0, 1.0, 1.0, 1.0);
+    }
+
+    if (tpos.x > -0.44 && tpos.x < -0.12) {
+        v_color = vec4(1.0, 1.0, 1.0, 1.0);
+    }
+
+    if (tpos.y > -0.11111 && tpos.y < 0.11111) {
+        v_color = vec4(0.8627451, 0.11764706, 0.20784314, 1.0);
+    }
+
+    if (tpos.x > -0.36 && tpos.x < -0.20) {
+        v_color = vec4(0.8627451, 0.11764706, 0.20784314, 1.0);
+    }
+
+    gl_Position = tpos;
+    
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+varying vec4 v_color;
+
+void main()
+{
+    gl_FragColor = v_color;
+}
+</script>
+
+<script type="text/javascript" src="Island_files/webgl-utils.js"></script>
+<script type="text/javascript" src="Island_files/initShaders.js"></script>
+<script type="text/javascript" src="Island_files/MV.js"></script>
+<script type="text/javascript" src="Island_files/island.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="834" height="600">
+
+
+</canvas></body></html>
